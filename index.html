@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git & GitHub Mastery Handbook</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Prism.js for syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <button id="sidebar-toggle" class="mobile-toggle" aria-label="Toggle Sidebar">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brand">
+        <svg class="git-icon" height="24" viewBox="0 0 16 16" width="24" fill="currentColor">
+          <path d="M15.698 7.287 8.712.302a1.03 1.03 0 0 0-1.457 0l-1.45 1.45 1.84 1.84a1.223 1.223 0 0 1 1.55 1.56l1.773 1.774a1.224 1.224 0 0 1 1.267 2.025 1.226 1.226 0 0 1-2.002-1.334L8.58 5.963v4.353a1.226 1.226 0 1 1-1.008-.036V5.887a1.226 1.226 0 0 1-.666-1.608L5.093 2.465l-4.79 4.79a1.03 1.03 0 0 0 0 1.457l6.986 6.986a1.03 1.03 0 0 0 1.457 0l6.953-6.953a1.031 1.031 0 0 0 0-1.458"></path>
+        </svg>
+        <span>Git & GitHub Docs</span>
+      </div>
+      <div class="header-actions">
+        <span class="badge">v1.0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Table of Contents</span>
+          <ul>
+            <li><a href="#section-1" class="nav-link active">1. Getting Started with Git</a></li>
+            <li><a href="#section-2" class="nav-link">2. Git & GitHub Integration</a></li>
+            <li><a href="#section-3" class="nav-link">3. Fork, Clone & History</a></li>
+            <li><a href="#section-4" class="nav-link">4. Working with Branches</a></li>
+            <li><a href="#section-5" class="nav-link">5. Merge Conflicts & Tags</a></li>
+            <li><a href="#section-6" class="nav-link">6. GitHub Collaboration</a></li>
+            <li><a href="#section-7" class="nav-link">7. Markdown Guide</a></li>
+            <li><a href="#section-8" class="nav-link">8. GitHub Pages Deployment</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="doc-content">
+      <div class="content-container">
+        <!-- SECTIONS WILL BE ADDED HERE STEP BY STEP -->
+        <div id="sections-wrapper">
+          <!-- Placeholder until Section 1 is inserted -->
+           <!-- ================================================================= -->
+            <!-- SECTION 1: GETTING STARTED WITH GIT                               -->
+            <!-- ================================================================= -->
+            <section id="section-1" class="doc-section">
+            <h1 class="section-title">1. Getting Started with Git</h1>
+            <p>
+                This foundational section guides you through installing Git on Windows, setting up your global user identity, initializing local repositories, inspecting project changes, and executing your first snapshot commit.
+            </p>
+
+            <!-- 1.1 Installing Git on Windows -->
+            <h2>1.1 Installing Git on Windows</h2>
+            <p>
+                To work with Git on Windows, download and install <strong>Git for Windows</strong>, which provides the <strong>Git Bash</strong> terminal environment, command-line tools, and shell integration.
+            </p>
+            
+            <ol class="steps-list">
+                <li>Download the standalone installer from the official site: <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git-scm.com/download/win</a>.</li>
+                <li>Run the <code>.exe</code> wizard and keep the default options recommended by the installer.</li>
+                <li>
+                <strong>Key setting:</strong> When prompted for line ending conversions, choose 
+                <code>Checkout Windows-style, commit Unix-style line endings</code> (<code>core.autocrlf = true</code>) to avoid cross-platform formatting issues.
+                </li>
+            </ol>
+
+            <h3>Verify Installation</h3>
+            <p>Open Git Bash, Command Prompt, or PowerShell and verify the installed version:</p>
+            <pre><code class="language-bash">git --version</code></pre>
+
+            <!-- 1.2 Setting Up Git Workspace -->
+            <h2>1.2 Setting Up Your Git Workspace</h2>
+            <p>
+                Before creating or committing to any repository, you must set your global author identity. Git attaches this name and email to every commit you generate.
+            </p>
+
+            <pre><code class="language-bash"># Set your global author name
+            git config --global user.name "Your Name"
+
+            # Set your global author email (matches your GitHub account)
+            git config --global user.email "your.email@example.com"
+
+            # Set default branch name to 'main' for new repositories
+            git config --global init.defaultBranch main</code></pre>
+
+            <div class="callout">
+                <div class="callout-title">Useful Configuration Inspection Commands</div>
+                <pre><code class="language-bash"># List all active configurations across system, user, and repository levels
+            git config --list --show-origin
+
+            # Check a specific configuration key value
+            git config user.name</code></pre>
+            </div>
+
+            <!-- 1.3 Initializing a Repository -->
+            <h2>1.3 Initializing a Repository (<code>git init</code>)</h2>
+            <p>
+                To turn an existing local folder into a Git-managed project, initialize it using the <code>git init</code> command.
+            </p>
+
+            <pre><code class="language-bash"># Navigate to your local project directory
+            cd C:/path/to/your/Git_Github_Docs
+
+            # Initialize a new Git repository
+            git init</code></pre>
+
+            <div class="callout warning">
+                <div class="callout-title">What is the <code>.git</code> folder?</div>
+                <p>
+                Running <code>git init</code> creates a hidden <code>.git/</code> directory at the root of your folder. It stores all commit histories, branch references, and internal object stores. Never delete or directly modify this folder unless you intend to destroy local tracking history.
+                </p>
+            </div>
+
+            <!-- 1.4 Reviewing File Changes & Three States -->
+            <h2>1.4 Reviewing File Changes & The Three States</h2>
+            <p>
+                Git tracks files across three primary local states:
+            </p>
+            <ul>
+                <li><strong>Working Directory:</strong> Files currently being created, edited, or deleted in your folder.</li>
+                <li><strong>Staging Area (Index):</strong> A draft space where file changes are organized before committing.</li>
+                <li><strong>Local Repository (<code>.git</code>):</strong> Saved history containing finalized snapshot commits.</li>
+            </ul>
+
+            <h3>Check Workspace Status (<code>git status</code>)</h3>
+            <p>Use <code>git status</code> to see untracked, modified, or staged files:</p>
+
+            <pre><code class="language-bash"># Full status inspection
+            git status
+
+            # Compact status view
+            git status -s</code></pre>
+
+            <h3>Inspect Line Differences (<code>git diff</code>)</h3>
+            <p>Review exact line-by-line modifications made to your files:</p>
+
+            <pre><code class="language-bash"># Compare Working Directory changes against the Staging Area
+            git diff
+
+            # Compare Staging Area changes against the latest commit
+            git diff --staged</code></pre>
+
+            <!-- 1.5 Executing First Commit -->
+            <h2>1.5 Executing Your First Commit</h2>
+            <p>
+                A commit creates an immutable snapshot of your staged files in the local Git history.
+            </p>
+
+            <h3>Step 1: Stage Files</h3>
+            <pre><code class="language-bash"># Stage a specific file
+            git add index.html
+
+            # Stage all modified and untracked files in the repository
+            git add .</code></pre>
+
+            <h3>Step 2: Commit Staged Files</h3>
+            <pre><code class="language-bash"># Commit staged changes with an informative snapshot message
+            git commit -m "Initial commit: Add base layout and Section 1 documentation"</code></pre>
+
+            <div class="callout">
+                <div class="callout-title">Pro Tip: Shortcut for Tracked Files</div>
+                <p>
+                To stage modified files and commit them in a single step (skips untracked files):
+                </p>
+                <pre><code class="language-bash">git commit -am "Update Section 1 styles and fix markup spacing"</code></pre>
+            </div>
+
+            <!-- Command Summary Table -->
+            <h2>Section 1 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>git config --global user.name "Name"</code></td>
+                    <td>Sets the global author name for commits across all repositories.</td>
+                </tr>
+                <tr>
+                    <td><code>git config --global user.email "email"</code></td>
+                    <td>Sets the global author email address associated with your commits.</td>
+                </tr>
+                <tr>
+                    <td><code>git init</code></td>
+                    <td>Initializes a new Git repository and creates the hidden <code>.git/</code> directory.</td>
+                </tr>
+                <tr>
+                    <td><code>git status</code></td>
+                    <td>Displays active states of untracked, modified, and staged files.</td>
+                </tr>
+                <tr>
+                    <td><code>git diff</code></td>
+                    <td>Shows unstaged line-by-line file changes in the working directory.</td>
+                </tr>
+                <tr>
+                    <td><code>git add &lt;file&gt;</code></td>
+                    <td>Moves specified file modifications into the Staging Area (Index).</td>
+                </tr>
+                <tr>
+                    <td><code>git commit -m "msg"</code></td>
+                    <td>Saves staged changes as an immutable snapshot in the local repository.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 2: GIT & GITHUB INTEGRATION                              -->
+            <!-- ================================================================= -->
+            <section id="section-2" class="doc-section">
+            <h1 class="section-title">2. Git & GitHub Integration</h1>
+            <p>
+                This section covers linking your local Git environment with GitHub, creating remote repositories, pushing local code, pulling updates, and managing remote authentication seamlessly.
+            </p>
+
+            <!-- 2.1 Creating a GitHub Account & Setting Up Authentication -->
+            <h2>2.1 GitHub Account & Authentication Setup</h2>
+            <p>
+                GitHub acts as a cloud host for Git repositories. To interact with GitHub securely from your terminal without entering passwords repeatedly, set up an <strong>SSH Key</strong> or a <strong>Personal Access Token (PAT)</strong>.
+            </p>
+
+            <ol class="steps-list">
+                <li>Sign up for an account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a>.</li>
+                <li>
+                Generate an SSH Key pair in Git Bash:
+                <pre><code class="language-bash">ssh-keygen -t ed25519 -C "your.email@example.com"</code></pre>
+                </li>
+                <li>Start the SSH agent in the background and add your private key:
+                <pre><code class="language-bash">eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_ed25519</code></pre>
+                </li>
+                <li>
+                Copy your public key to your clipboard:
+                <pre><code class="language-bash">clip < ~/.ssh/id_ed25519.pub</code></pre>
+                </li>
+                <li>Navigate to <strong>GitHub Settings &gt; SSH and GPG keys &gt; New SSH key</strong> and paste your public key.</li>
+            </ol>
+
+            <h3>Test SSH Connection</h3>
+            <pre><code class="language-bash">ssh -T git@github.com</code></pre>
+            <blockquote>Expected output: <em>"Hi username! You've successfully authenticated..."</em></blockquote>
+
+            <!-- 2.2 Pushing Local Repository to GitHub -->
+            <h2>2.2 Connecting & Pushing Local Repo to GitHub</h2>
+            <p>
+                Once you create a new empty repository on GitHub (without initializing a README or <code>.gitignore</code>), link your existing local project to the remote server.
+            </p>
+
+            <h3>Step 1: Add Remote Origin URL</h3>
+            <pre><code class="language-bash"># Using SSH (Recommended)
+            git remote add origin git@github.com:username/Git_Github_Docs.git
+
+            # OR using HTTPS
+            git remote add origin https://github.com/username/Git_Github_Docs.git</code></pre>
+
+            <h3>Step 2: Rename Default Branch & Push Initial Commit</h3>
+            <pre><code class="language-bash"># Ensure local main branch is named 'main'
+            git branch -M main
+
+            # Push local commits to remote 'origin' and set upstream tracking (-u)
+            git push -u origin main</code></pre>
+
+            <div class="callout">
+                <div class="callout-title">What does the <code>-u</code> (or <code>--set-upstream</code>) flag do?</div>
+                <p>
+                The <code>-u</code> flag links your local <code>main</code> branch to the remote <code>origin/main</code> branch. Once linked, you can simply run <code>git push</code> or <code>git pull</code> without specifying the remote name and branch every time.
+                </p>
+            </div>
+
+            <!-- 2.3 Managing Remotes & Status Checks -->
+            <h2>2.3 Managing Remotes & Tracking Remote Changes</h2>
+            <p>
+                Inspect remote links, update URLs, or remove remote associations as your project evolves.
+            </p>
+
+            <pre><code class="language-bash"># View linked remote repositories with URLs
+            git remote -v
+
+            # Show detailed remote tracking info and branch mappings
+            git remote show origin
+
+            # Change remote URL (e.g., switching from HTTPS to SSH)
+            git remote set-url origin git@github.com:username/Git_Github_Docs.git</code></pre>
+
+            <!-- 2.4 Editing Code on GitHub UI & Fetching/Pulling Updates -->
+            <h2>2.4 Syncing Remote Changes (<code>git fetch</code> vs <code>git pull</code>)</h2>
+            <p>
+                When changes are made directly on the GitHub website or pushed by collaborators, you must synchronize your local repository with the remote server.
+            </p>
+
+            <h3>Fetch vs Pull</h3>
+            <ul>
+                <li><strong><code>git fetch</code>:</strong> Downloads new data and commits from remote without merging them into your working files. Safest for inspecting remote work first.</li>
+                <li><strong><code>git pull</code>:</strong> Downloads remote changes AND automatically attempts to merge them into your current local branch (equivalent to <code>git fetch</code> + <code>git merge</code>).</li>
+            </ul>
+
+            <pre><code class="language-bash"># Fetch remote metadata without altering local working code
+            git fetch origin
+
+            # Inspect differences between local main and remote main after fetching
+            git diff main origin/main
+
+            # Pull latest commits and integrate them directly into your active branch
+            git pull origin main</code></pre>
+
+            <div class="callout warning">
+                <div class="callout-title">Keep local repo clean before pulling</div>
+                <p>
+                Always run <code>git status</code> before performing a <code>git pull</code> to ensure you don't have uncommitted working directory changes that could lead to unexpected merge conflicts.
+                </p>
+            </div>
+
+            <!-- Section 2 Command Summary Table -->
+            <h2>Section 2 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>git remote add origin &lt;url&gt;</code></td>
+                    <td>Links a local repository to a remote GitHub server under the alias <code>origin</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>git remote -v</code></td>
+                    <td>Lists all remote connections along with their fetch/push URLs.</td>
+                </tr>
+                <tr>
+                    <td><code>git push -u origin &lt;branch&gt;</code></td>
+                    <td>Uploads local commits to GitHub and sets upstream branch tracking.</td>
+                </tr>
+                <tr>
+                    <td><code>git fetch origin</code></td>
+                    <td>Downloads remote changes/branches without modifying local working files.</td>
+                </tr>
+                <tr>
+                    <td><code>git pull origin &lt;branch&gt;</code></td>
+                    <td>Fetches and immediately merges remote changes into the current active branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git remote set-url origin &lt;url&gt;</code></td>
+                    <td>Updates the remote repository URL for an existing remote alias.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 3: FORK, CLONE & HISTORY INSPECTION                      -->
+            <!-- ================================================================= -->
+            <section id="section-3" class="doc-section">
+            <h1 class="section-title">3. Fork, Clone & History Inspection</h1>
+            <p>
+                This section covers copying remote repositories (forking and cloning), inspecting commit history using logs and filters, viewing file details across time, making changes, and safe techniques for undoing or reverting commits.
+            </p>
+
+            <!-- 3.1 Intro to Forking vs Cloning -->
+            <h2>3.1 Understanding Forking vs. Cloning</h2>
+            <p>
+                While both operations copy a repository, they serve fundamentally different roles in Git and GitHub workflows:
+            </p>
+            
+            <ul>
+                <li>
+                <strong>Forking (GitHub feature):</strong> Creates a server-side copy of someone else's public GitHub repository under your own GitHub account. It allows you to freely experiment or contribute to open-source projects via Pull Requests without affecting the original project.
+                </li>
+                <li>
+                <strong>Cloning (Git feature):</strong> Downloads a complete copy of a remote repository (including full history, branches, and commit logs) onto your local computer.
+                </li>
+            </ul>
+
+            <h3>Cloning a Repository</h3>
+            <p>To copy a remote repository to your local computer:</p>
+            <pre><code class="language-bash"># Clone a repository using SSH
+            git clone git@github.com:username/repository-name.git
+
+            # Clone into a custom directory name
+            git clone git@github.com:username/repository-name.git my-custom-folder</code></pre>
+
+            <!-- 3.2 Exploring Git Logs -->
+            <h2>3.2 Exploring Git Commit Logs</h2>
+            <p>
+                Git records every snapshot made to the project history. The <code>git log</code> command lets you inspect author metadata, dates, commit hashes, and commit messages.
+            </p>
+
+            <pre><code class="language-bash"># Basic commit log history
+            git log
+
+            # Display compact history (one line per commit with abbreviated hash)
+            git log --oneline
+
+            # View commit history formatted as a visual ASCII graph showing branches
+            git log --oneline --graph --all
+
+            # Display last N commits
+            git log -n 5
+
+            # Filter commits by author or date range
+            git log --author="Your Name"
+            git log --since="2 weeks ago"</code></pre>
+
+            <!-- 3.3 Getting Commit & File Details -->
+            <h2>3.3 Inspecting Commit & File Details</h2>
+            <p>
+                To analyze specific changes made in a past commit or trace line modifications to a file, use <code>git show</code> and <code>git blame</code>.
+            </p>
+
+            <h3>Inspect Specific Commit Details (<code>git show</code>)</h3>
+            <pre><code class="language-bash"># View changes, author, and timestamp for the HEAD (latest) commit
+            git show HEAD
+
+            # View changes introduced in a specific commit hash
+            git show 7a1b3f2</code></pre>
+
+            <h3>Line-by-Line Tracking (<code>git blame</code>)</h3>
+            <p>
+                Identify who modified specific lines in a file and in which commit:
+            </p>
+            <pre><code class="language-bash"># Show author and commit hash for every line in index.html
+            git blame index.html
+
+            # Inspect line range 10 to 25 only
+            git blame -L 10,25 index.html</code></pre>
+
+            <!-- 3.4 Making Changes, Undoing Changes & Reverting Commits -->
+            <h2>3.4 Undoing Changes & Reverting Commits</h2>
+            <p>
+                Git provides multiple commands to discard uncommitted working changes, unstage files, or safely reverse pushed commits.
+            </p>
+
+            <h3>1. Discard Unstaged Working Directory Changes</h3>
+            <pre><code class="language-bash"># Discard local uncommitted changes in a specific file
+            git restore index.html
+
+            # Discard all local working changes in current directory
+            git restore .</code></pre>
+
+            <h3>2. Unstage Files from Staging Area</h3>
+            <pre><code class="language-bash"># Move a file out of the staging area back to working directory
+            git restore --staged index.html</code></pre>
+
+            <h3>3. Revert an Existing Commit Safely (<code>git revert</code>)</h3>
+            <p>
+                <code>git revert</code> creates a <strong>new commit</strong> that inverses the changes of a specified past commit. This is the safest way to undo changes on remote/public branches because it preserves commit history.
+            </p>
+            <pre><code class="language-bash"># Revert the latest commit safely
+            git revert HEAD
+
+            # Revert a specific historical commit hash
+            git revert 7a1b3f2</code></pre>
+
+            <div class="callout warning">
+                <div class="callout-title">Reset vs. Revert</div>
+                <p>
+                <code>git reset --hard &lt;commit&gt;</code> moves the current branch pointer backward, permanently erasing uncommitted changes and commit history. Never use <code>git reset --hard</code> on shared remote branches; use <code>git revert</code> instead.
+                </p>
+            </div>
+
+            <!-- Section 3 Command Summary Table -->
+            <h2>Section 3 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>git clone &lt;url&gt;</code></td>
+                    <td>Downloads a complete remote repository and tracking history to local machine.</td>
+                </tr>
+                <tr>
+                    <td><code>git log --oneline --graph</code></td>
+                    <td>Displays branch topology and commit history in a compact single-line graph format.</td>
+                </tr>
+                <tr>
+                    <td><code>git show &lt;hash&gt;</code></td>
+                    <td>Outputs commit metadata and line diff details for a specific commit hash.</td>
+                </tr>
+                <tr>
+                    <td><code>git blame &lt;file&gt;</code></td>
+                    <td>Shows line-by-line author annotations and commit hashes for a file.</td>
+                </tr>
+                <tr>
+                    <td><code>git restore &lt;file&gt;</code></td>
+                    <td>Discards unstaged modifications made in the working directory.</td>
+                </tr>
+                <tr>
+                    <td><code>git restore --staged &lt;file&gt;</code></td>
+                    <td>Unstages a file while keeping its changes intact in the working directory.</td>
+                </tr>
+                <tr>
+                    <td><code>git revert &lt;hash&gt;</code></td>
+                    <td>Creates a new inverse commit to safely undo changes without modifying history.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 4: WORKING WITH BRANCHES                                  -->
+            <!-- ================================================================= -->
+            <section id="section-4" class="doc-section">
+            <h1 class="section-title">4. Working with Branches</h1>
+            <p>
+                This section covers branch creation and switching, managing branches on terminal and GitHub, adding <code>.gitignore</code> files, visual branch graphing, local merging, and opening Pull Requests (PRs).
+            </p>
+
+            <!-- 4.1 What is a Branch? -->
+            <h2>4.1 What is a Branch?</h2>
+            <p>
+                A branch in Git is essentially a lightweight, movable pointer to a specific commit snapshot. Branching enables you to isolate new feature development, bug fixes, or experimental code from the main production codebase (<code>main</code>).
+            </p>
+
+            <!-- 4.2 Branch Operations on Terminal & GitHub -->
+            <h2>4.2 Branch Management Commands</h2>
+            <p>
+                You can manage branches directly using terminal commands or via the GitHub web interface.
+            </p>
+
+            <h3>Create & Switch Branches</h3>
+            <pre><code class="language-bash"># List all local branches (* indicates current branch)
+            git branch
+
+            # List both local and remote-tracking branches
+            git branch -a
+
+            # Create a new branch named 'feature/sidebar'
+            git branch feature/sidebar
+
+            # Switch to an existing branch
+            git switch feature/sidebar
+            # (Legacy alternative: git checkout feature/sidebar)
+
+            # Shortcut: Create and immediately switch to a new branch
+            git switch -c feature/sidebar
+            # (Legacy alternative: git checkout -b feature/sidebar)</code></pre>
+
+            <h3>Delete & Rename Branches</h3>
+            <pre><code class="language-bash"># Rename active branch locally
+            git branch -m feature/new-sidebar-layout
+
+            # Safely delete a local branch (only if fully merged)
+            git branch -d feature/sidebar
+
+            # Force delete an unmerged local branch
+            git branch -D feature/sidebar
+
+            # Delete a remote branch from GitHub
+            git push origin --delete feature/sidebar</code></pre>
+
+            <!-- 4.3 Adding a .gitignore File -->
+            <h2>4.3 Preventing Unwanted Files (<code>.gitignore</code>)</h2>
+            <p>
+                A <code>.gitignore</code> text file instructs Git to ignore specific files, patterns, or directories (e.g., build artifacts, sensitive API keys, or dependency folders like <code>node_modules/</code>).
+            </p>
+
+            <h3>Example <code>.gitignore</code> file content:</h3>
+            <pre><code class="language-bash"># Dependency directories
+            node_modules/
+            vendor/
+
+            # Environment files containing secrets
+            .env
+            .env.local
+
+            # Operating System system files
+            .DS_Store
+            Thumbs.db
+
+            # Log files
+            *.log</code></pre>
+
+            <div class="callout warning">
+                <div class="callout-title">Important: Ignoring previously tracked files</div>
+                <p>
+                If a file was already committed, adding it to <code>.gitignore</code> later will not stop Git from tracking it. You must clear it from the index first:
+                </p>
+                <pre><code class="language-bash">git rm --cached .env
+            git commit -m "Stop tracking .env file"</code></pre>
+            </div>
+
+            <!-- 4.4 Graphing & Merging Branches -->
+            <h2>4.4 Branch Visualization & Merging</h2>
+            
+            <h3>Terminal Branch Topology Graphing</h3>
+            <pre><code class="language-bash"># View visual branch split and merge topology
+            git log --oneline --graph --all --decorate</code></pre>
+
+            <h3>Merging Branches Locally</h3>
+            <p>
+                To integrate changes from a feature branch back into your <code>main</code> branch:
+            </p>
+
+            <pre><code class="language-bash"># Step 1: Switch to the receiving target branch
+            git switch main
+
+            # Step 2: Ensure main branch is up-to-date with remote
+            git pull origin main
+
+            # Step 3: Merge feature branch changes into main
+            git merge feature/sidebar</code></pre>
+
+            <!-- 4.5 Pull Requests in GitHub -->
+            <h2>4.5 Pull Requests (PRs) in GitHub</h2>
+            <p>
+                Instead of merging code directly into <code>main</code> on your local terminal, collaborative development relies on <strong>Pull Requests</strong> on GitHub to review code before merging.
+            </p>
+
+            <ol class="steps-list">
+                <li>Push your feature branch to GitHub:
+                <pre><code class="language-bash">git push -u origin feature/sidebar</code></pre>
+                </li>
+                <li>Navigate to your GitHub repository page.</li>
+                <li>Click the <strong>"Compare &amp; pull request"</strong> banner.</li>
+                <li>Provide a descriptive title and summary of changes, then click <strong>"Create pull request"</strong>.</li>
+                <li>Once reviewed and approved, click <strong>"Merge pull request"</strong> on GitHub.</li>
+                <li>Pull the merged changes down to your local machine:
+                <pre><code class="language-bash">git switch main
+            git pull origin main</code></pre>
+                </li>
+            </ol>
+
+            <!-- Section 4 Command Summary Table -->
+            <h2>Section 4 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>git branch</code></td>
+                    <td>Lists all local branches in the repository.</td>
+                </tr>
+                <tr>
+                    <td><code>git switch -c &lt;branch&gt;</code></td>
+                    <td>Creates and immediately checks out a new branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git branch -d &lt;branch&gt;</code></td>
+                    <td>Deletes a local branch safely after ensuring it is merged.</td>
+                </tr>
+                <tr>
+                    <td><code>git rm --cached &lt;file&gt;</code></td>
+                    <td>Removes a file from Git tracking without deleting it from disk.</td>
+                </tr>
+                <tr>
+                    <td><code>git log --graph --oneline</code></td>
+                    <td>Displays an ASCII graph of branch trees and commit histories.</td>
+                </tr>
+                <tr>
+                    <td><code>git merge &lt;branch&gt;</code></td>
+                    <td>Integrates changes from the specified branch into the current active branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git push origin --delete &lt;branch&gt;</code></td>
+                    <td>Removes a specified branch from the remote GitHub repository.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 5: MERGE CONFLICTS & REPOSITORY TAGS                     -->
+            <!-- ================================================================= -->
+            <section id="section-5" class="doc-section">
+            <h1 class="section-title">5. Merge Conflicts & Repository Tags</h1>
+            <p>
+                This section explains why merge conflicts occur, how to resolve them locally in your terminal or editor, how to handle conflicts directly on GitHub, and how to tag release milestones in your Git repository.
+            </p>
+
+            <!-- 5.1 When Do Merge Conflicts Happen? -->
+            <h2>5.1 Understanding Merge Conflicts</h2>
+            <p>
+                A merge conflict occurs when Git cannot automatically reconcile differences between two commits. This typically happens when:
+            </p>
+            <ul>
+                <li>The same line in a file was modified differently across two branches being merged.</li>
+                <li>A file was edited in one branch but deleted in the other branch.</li>
+            </ul>
+
+            <div class="callout warning">
+                <div class="callout-title">Git does not overwrite conflicting code automatically</div>
+                <p>
+                Instead of guessing which change is correct, Git halts the merge operation, inserts <strong>conflict markers</strong> directly into the affected files, and waits for a human developer to decide which changes to keep.
+                </p>
+            </div>
+
+            <!-- 5.2 Resolving Conflicts Locally -->
+            <h2>5.2 Resolving Conflicts on the Terminal & Code Editor</h2>
+
+            <h3>Step 1: Identify Conflicted Files</h3>
+            <p>When a merge fails, check status to list unmerged paths:</p>
+            <pre><code class="language-bash">git merge feature/new-layout
+            # Output: CONFLICT (content): Merge conflict in index.html
+            # Automatic merge failed; fix conflicts and then commit the result.
+
+            git status
+            # Conflicted files will appear under "Unmerged paths:"</code></pre>
+
+            <h3>Step 2: Inspect Conflict Markers</h3>
+            <p>Open the conflicted file in your editor (e.g., VS Code). You will see markers separating conflicting sections:</p>
+            <pre><code class="language-markdown">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD (Your Current Branch)
+            &lt;h1&gt;Welcome to Git Docs&lt;/h1&gt;
+            =======
+            &lt;h1&gt;Welcome to Git &amp; GitHub Mastery Handbook&lt;/h1&gt;
+            &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/new-layout (Incoming Branch)</code></pre>
+
+            <ul>
+                <li><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>: Changes in your currently checked-out branch.</li>
+                <li><code>=======</code>: The divider between conflicting changes.</li>
+                <li><code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name</code>: Incoming changes from the branch being merged.</li>
+            </ul>
+
+            <h3>Step 3: Resolve & Finalize Commit</h3>
+            <p>Edit the file manually to keep the desired code, remove all conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>), and stage the fix:</p>
+            <pre><code class="language-bash"># Stage the resolved file
+            git add index.html
+
+            # Complete the merge commit
+            git commit -m "Fix merge conflict in index.html"</code></pre>
+
+            <div class="callout">
+                <div class="callout-title">Aborting a Merge</div>
+                <p>If you make a mistake or want to restore your repository to its pre-merge state at any point:</p>
+                <pre><code class="language-bash">git merge --abort</code></pre>
+            </div>
+
+            <!-- 5.3 Solving Conflicts on GitHub -->
+            <h2>5.3 Resolving Conflicts on GitHub</h2>
+            <p>
+                If a Pull Request has conflicting changes, GitHub disables the "Merge pull request" button and provides a web-based conflict editor:
+            </p>
+            <ol class="steps-list">
+                <li>Click the <strong>"Resolve conflicts"</strong> button inside your open Pull Request.</li>
+                <li>Locate the conflict markers directly in the browser editor interface.</li>
+                <li>Edit the file to keep the correct lines and remove all marker lines.</li>
+                <li>Click <strong>"Mark as resolved"</strong> in the top-right corner.</li>
+                <li>Click <strong>"Commit merge"</strong> to update the branch and allow PR merging.</li>
+            </ol>
+
+            <!-- 5.4 Adding & Managing Tags -->
+            <h2>5.4 Adding Tags to Repository Milestones</h2>
+            <p>
+                Tags are reference pointers to specific commits in history, most commonly used to mark release milestones (e.g., <code>v1.0.0</code>, <code>v2.1.0</code>).
+            </p>
+
+            <h3>Lightweight vs. Annotated Tags</h3>
+            <ul>
+                <li><strong>Lightweight Tags:</strong> Simple pointers to a specific commit hash.</li>
+                <li><strong>Annotated Tags (Recommended):</strong> Stored as full checksummed objects with tagger name, email, date, and release message.</li>
+            </ul>
+
+            <pre><code class="language-bash"># Create an annotated release tag on the current HEAD commit
+            git tag -a v1.0.0 -m "Release version 1.0.0: Initial release with full section coverage"
+
+            # Create a tag for a specific past commit hash
+            git tag -a v0.9.0 7a1b3f2 -m "Beta preview build"
+
+            # List all tags in the repository
+            git tag -l
+
+            # View details and commit metadata associated with a tag
+            git show v1.0.0</code></pre>
+
+            <h3>Pushing Tags to Remote GitHub Server</h3>
+            <p>Standard <code>git push</code> commands do not automatically send tags to remote servers. You must explicitly push them:</p>
+            <pre><code class="language-bash"># Push a specific tag to GitHub
+            git push origin v1.0.0
+
+            # Push all local tags to GitHub at once
+            git push origin --tags
+
+            # Delete a tag locally
+            git tag -d v1.0.0
+
+            # Delete a remote tag on GitHub
+            git push origin --delete v1.0.0</code></pre>
+
+            <!-- Section 5 Command Summary Table -->
+            <h2>Section 5 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>git merge &lt;branch&gt;</code></td>
+                    <td>Attempts to combine target branch changes into the active branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git merge --abort</code></td>
+                    <td>Cancels an in-progress merge and resets files to pre-merge status.</td>
+                </tr>
+                <tr>
+                    <td><code>git tag -a &lt;tag&gt; -m "msg"</code></td>
+                    <td>Creates an annotated git tag pointing to the current commit with release notes.</td>
+                </tr>
+                <tr>
+                    <td><code>git tag -l</code></td>
+                    <td>Lists all version tags created in the repository.</td>
+                </tr>
+                <tr>
+                    <td><code>git push origin &lt;tag&gt;</code></td>
+                    <td>Uploads a specific local release tag to the GitHub remote repository.</td>
+                </tr>
+                <tr>
+                    <td><code>git push origin --tags</code></td>
+                    <td>Uploads all local tags to the remote repository in one command.</td>
+                </tr>
+                <tr>
+                    <td><code>git tag -d &lt;tag&gt;</code></td>
+                    <td>Deletes a local tag reference from your repository.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 6: COLLABORATION IN GITHUB                               -->
+            <!-- ================================================================= -->
+            <section id="section-6" class="doc-section">
+            <h1 class="section-title">6. Collaboration in GitHub</h1>
+            <p>
+                This section covers team workflows, protecting production branches, enforcing peer review policies in Pull Requests, and efficiently managing project Issues and Discussions on GitHub.
+            </p>
+
+            <!-- 6.1 Branch Protection Rules -->
+            <h2>6.1 Protecting Branches on GitHub</h2>
+            <p>
+                In production repositories, preventing direct code pushes to <code>main</code> prevents accidental breaking changes. GitHub <strong>Branch Protection Rules</strong> enforce workflows that require code checks before merging.
+            </p>
+
+            <ol class="steps-list">
+                <li>Go to your GitHub repository and click <strong>Settings</strong>.</li>
+                <li>In the left sidebar, click <strong>Branches</strong> under the <em>Code and automation</em> section.</li>
+                <li>Click <strong>Add branch protection rule</strong> (or edit an existing one).</li>
+                <li>In the <strong>Branch name pattern</strong> field, enter <code>main</code> (or target branch name).</li>
+                <li>
+                Configure key protection toggles:
+                <ul>
+                    <li><strong>Require a pull request before merging:</strong> Disables direct <code>git push origin main</code>.</li>
+                    <li><strong>Require approvals:</strong> Set minimum required reviewer approvals (e.g., 1 or 2).</li>
+                    <li><strong>Dismiss stale pull request approvals when new commits are pushed:</strong> Re-evaluates code when updated.</li>
+                    <li><strong>Require status checks to pass before merging:</strong> Ensures automated CI/CD pipelines succeed first.</li>
+                </ul>
+                </li>
+                <li>Click <strong>Create</strong> or <strong>Save changes</strong>.</li>
+            </ol>
+
+            <!-- 6.2 Requiring Reviews in Pull Requests -->
+            <h2>6.2 PR Reviews & Peer Feedback Workflows</h2>
+            <p>
+                Pull Request reviews allow collaborators to comment on specific lines of code, request improvements, or approve updates.
+            </p>
+
+            <h3>PR Review Options for Reviewers</h3>
+            <ul>
+                <li><strong>Comment:</strong> Submits general feedback without explicit approval or rejection.</li>
+                <li><strong>Approve:</strong> Authorizes merging the PR into the target branch.</li>
+                <li><strong>Request changes:</strong> Blocks PR merging until specified code fixes are addressed.</li>
+            </ul>
+
+            <div class="callout">
+                <div class="callout-title">Linking Issues to Pull Requests Automatically</div>
+                <p>
+                You can automatically close a GitHub Issue when a PR is merged by referencing keywords in your PR description or commit message:
+                </p>
+
+                <pre><code class="language-markdown"># Accepted closing keywords inside PR descriptions:
+            Closes #12
+            Fixes #45
+            Resolves #102</code></pre>
+            </div>
+
+            <!-- 6.3 Working with Issues, Labels & Milestones -->
+            <h2>6.3 Managing Project Issues & Board Workflows</h2>
+            <p>
+                GitHub Issues track bugs, feature enhancements, and tasks across your team's workflow.
+            </p>
+
+            <h3>Key Components of GitHub Issues</h3>
+            <ul>
+                <li><strong>Labels:</strong> Categorize issues using colors and tags (e.g., <code>bug</code>, <code>enhancement</code>, <code>documentation</code>, <code>good first issue</code>).</li>
+                <li><strong>Assignees:</strong> Assign specific team members responsible for resolving the task.</li>
+                <li><strong>Milestones:</strong> Group related issues and PRs toward specific product goals or sprint deadlines (e.g., <code>v1.0 Release</code>).</li>
+            </ul>
+
+            <!-- 6.4 Useful Collaboration Git Commands -->
+            <h2>6.4 Terminal Commands for Team Collaboration</h2>
+            <p>
+                Commands commonly used when managing remote branches with team members:
+            </p>
+
+            <pre><code class="language-bash"># Fetch remote branches and prune stale tracking references deleted on GitHub
+            git fetch --prune
+
+            # Switch to a teammate's remote branch locally
+            git checkout --track origin/feature/user-auth
+
+            # Check which branches are merged into current active branch
+            git branch --merged
+
+            # Check unmerged active work across branches
+            git branch --no-merged</code></pre>
+
+            <!-- Section 6 Command Summary Table -->
+            <h2>Section 6 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Command / Feature</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>Branch Protection Rules</code></td>
+                    <td>Enforces PR approvals, status checks, and blocks direct pushes to critical branches on GitHub.</td>
+                </tr>
+                <tr>
+                    <td><code>Closes #&lt;issue_number&gt;</code></td>
+                    <td>Automatically closes the linked issue when the PR merges into default branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git fetch --prune</code></td>
+                    <td>Removes local tracking references for branches that were deleted on GitHub.</td>
+                </tr>
+                <tr>
+                    <td><code>git checkout --track origin/&lt;branch&gt;</code></td>
+                    <td>Creates a local tracking branch linked to a remote collaborator branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git branch --merged</code></td>
+                    <td>Lists all branches whose changes have already been integrated into current branch.</td>
+                </tr>
+                <tr>
+                    <td><code>git branch --no-merged</code></td>
+                    <td>Lists all active branches containing unintegrated/unmerged commits.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 7: MARKDOWN GUIDE                                         -->
+            <!-- ================================================================= -->
+            <section id="section-7" class="doc-section">
+            <h1 class="section-title">7. Markdown Guide</h1>
+            <p>
+                Markdown is the lightweight markup language used across GitHub for formatting <code>README.md</code> files, Pull Request descriptions, issue comments, and documentation sites.
+            </p>
+
+            <!-- 7.1 Text Formatting & Headings -->
+            <h2>7.1 Text Formatting & Headings</h2>
+            <p>
+                Format text styles using standard Markdown syntax delimiters:
+            </p>
+
+            <pre><code class="language-markdown"># Heading Level 1
+            ## Heading Level 2
+            ### Heading Level 3
+            #### Heading Level 4
+
+            **Bold Text** or __Bold Text__
+            *Italic Text* or _Italic Text_
+            ***Bold and Italic Text***
+            ~~Strikethrough Text~~
+            `Inline Code Snippet`</code></pre>
+
+            <!-- 7.2 Lists & Task Checkboxes -->
+            <h2>7.2 Lists & Interactive Task Lists</h2>
+            <p>
+                Create ordered, unordered, or interactive checkbox lists:
+            </p>
+
+            <pre><code class="language-markdown"><!-- Unordered List -->
+            * Item A
+            * Item B
+            * Sub-item B1
+            * Sub-item B2
+
+            <!-- Ordered List -->
+            1. First step
+            2. Second step
+            3. Third step
+
+            <!-- GitHub Task Lists (Checkboxes) -->
+            - [x] Complete Section 6 documentation
+            - [ ] Add Section 7 Markdown guide
+            - [ ] Add Section 8 GitHub Pages guide</code></pre>
+
+            <!-- 7.3 Links, Images & Video Embeds -->
+            <h2>7.3 Links, Images & Media</h2>
+            <p>
+                Embed hyperlinks, remote or repository images, and media assets:
+            </p>
+
+            <pre><code class="language-markdown"><!-- Hyperlink -->
+            [Visit GitHub official site](https://github.com)
+
+            <!-- Relative link to file inside same repository -->
+            [Read License](./LICENSE)
+
+            <!-- Embedded Image -->
+            ![Git Architecture Diagram](./assets/images/git-diagram.png "Git Architecture")
+
+            <!-- Image with custom dimensions using standard HTML tag -->
+            &lt;img src="./assets/images/logo.png" alt="Logo" width="200" /&gt;</code></pre>
+
+            <!-- 7.4 Tables & Code Blocks -->
+            <h2>7.4 Tables & Fenced Code Blocks</h2>
+
+            <h3>Markdown Tables</h3>
+            <pre><code class="language-markdown">| Command | Description | Level |
+            | :--- | :---: | ---: |
+            | `git init` | Initialize repo | Basic |
+            | `git rebase` | Reapply commits | Advanced |</code></pre>
+
+            <h3>Fenced Code Blocks with Syntax Highlighting</h3>
+            <pre><code class="language-markdown">```bash
+            # Language identifier specifies syntax highlighting
+            git commit -m "Add markdown guide section"
+
+            function greet(name) {
+            console.log(`Hello, ${name}!`);
+            }
+            ```</code></pre>
+
+            <!-- 7.5 GitHub Flavored Markdown (GFM) Features -->
+            <h2>7.5 GitHub Flavored Markdown (GFM) Special Callouts</h2>
+            <p>
+                GitHub supports custom alert boxes in <code>README.md</code> files using standard syntax quotes:
+            </p>
+
+            <pre><code class="language-markdown">> [!NOTE]
+            > Highlights useful information that users should know.
+
+            > [!TIP]
+            > Helpful advice for doing things better or faster.
+
+            > [!IMPORTANT]
+            > Crucial information needed for user success.
+
+            > [!WARNING]
+            > Critical content demanding immediate user attention to prevent errors.</code></pre>
+
+            <!-- Section 7 Quick Reference Table -->
+            <h2>Section 7 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Element</th>
+                    <th>Markdown Syntax</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Headings</td>
+                    <td><code># H1</code>, <code>## H2</code>, <code>### H3</code></td>
+                </tr>
+                <tr>
+                    <td>Emphasis</td>
+                    <td><code>**Bold**</code>, <code>*Italic*</code>, <code>~~Strikethrough~~</code></td>
+                </tr>
+                <tr>
+                    <td>Links</td>
+                    <td><code>[Label](https://url.com)</code></td>
+                </tr>
+                <tr>
+                    <td>Images</td>
+                    <td><code>![Alt text](path/to/image.png)</code></td>
+                </tr>
+                <tr>
+                    <td>Task Lists</td>
+                    <td><code>- [x] Completed item</code>, <code>- [ ] Pending item</code></td>
+                </tr>
+                <tr>
+                    <td>Code Blocks</td>
+                    <td><code>```language ... ```</code></td>
+                </tr>
+                <tr>
+                    <td>Alert Callouts</td>
+                    <td><code>&gt; [!NOTE]</code>, <code>&gt; [!WARNING]</code></td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+            <!-- ================================================================= -->
+            <!-- SECTION 8: GITHUB PAGES                                           -->
+            <!-- ================================================================= -->
+            <section id="section-8" class="doc-section">
+            <h1 class="section-title">8. GitHub Pages Deployment</h1>
+            <p>
+                GitHub Pages is a free static web hosting service provided by GitHub that takes HTML, CSS, JavaScript, and asset files directly from a repository and publishes a live website.
+            </p>
+
+            <!-- 8.1 What is GitHub Pages? -->
+            <h2>8.1 What is GitHub Pages?</h2>
+            <p>
+                GitHub Pages hosts public static websites directly under the <code>github.io</code> domain. It automatically builds and serves code pushed to designated deployment branches (like <code>main</code> or <code>gh-pages</code>) or via GitHub Actions.
+            </p>
+
+            <h3>URL Structure</h3>
+            <ul>
+                <li><strong>User / Organization Site:</strong> <code>https://&lt;username&gt;.github.io</code> (from repo named <code>&lt;username&gt;.github.io</code>)</li>
+                <li><strong>Project Site:</strong> <code>https://&lt;username&gt;.github.io/&lt;repository-name&gt;/</code> (e.g., <code>https://username.github.io/Git_Github_Docs/</code>)</li>
+            </ul>
+
+            <!-- 8.2 Publishing Your Documentation Site -->
+            <h2>8.2 Deploying Your Site Step-by-Step</h2>
+            <p>
+                To publish your newly created <strong>Git_Github_Docs</strong> project using GitHub Pages:
+            </p>
+
+            <ol class="steps-list">
+                <li>Ensure all local project files (<code>index.html</code>, <code>assets/</code>) are committed and pushed to GitHub:
+                <pre><code class="language-bash">git add .
+            git commit -m "Add all 8 documentation sections"
+            git push origin main</code></pre>
+                </li>
+                <li>Navigate to your repository page on <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>.</li>
+                <li>Click the <strong>Settings</strong> tab at the top of the repository.</li>
+                <li>In the left sidebar menu, click <strong>Pages</strong> under the <em>Code and automation</em> section.</li>
+                <li>Under <strong>Build and deployment</strong> &gt; <strong>Source</strong>, select <code>Deploy from a branch</code>.</li>
+                <li>Under <strong>Branch</strong>, select <code>main</code> branch and <code>/ (root)</code> folder from the dropdowns.</li>
+                <li>Click <strong>Save</strong>.</li>
+            </ol>
+
+            <div class="callout">
+                <div class="callout-title">Deployment Status & Verification</div>
+                <p>
+                GitHub will initiate a build workflow. Refresh the Pages settings page after 1–2 minutes until you see a banner stating: 
+                <br />
+                <code>Your site is live at https://username.github.io/Git_Github_Docs/</code>
+                </p>
+            </div>
+
+            <!-- 8.3 Custom Domains & HTTPS -->
+            <h2>8.3 Configuring Custom Domains & HTTPS</h2>
+            <p>
+                You can map a custom domain (e.g., <code>gitdocs.yourdomain.com</code>) to your GitHub Pages site:
+            </p>
+
+            <ul>
+                <li>In <strong>Settings &gt; Pages</strong>, enter your custom domain under <strong>Custom domain</strong> and click Save.</li>
+                <li>GitHub automatically generates a <code>CNAME</code> file at the root of your repository.</li>
+                <li>In your DNS provider (e.g., Cloudflare, Namecheap, GoDaddy), add a <code>CNAME</code> record pointing your subdomain to <code>username.github.io</code>.</li>
+                <li>Check <strong>Enforce HTTPS</strong> to ensure secure TLS/SSL traffic.</li>
+            </ul>
+
+            <!-- 8.4 Troubleshooting Common Issues -->
+            <h2>8.4 Troubleshooting Pages Deployments</h2>
+
+            <div class="callout warning">
+                <div class="callout-title">404 Page Not Found?</div>
+                <ul>
+                <li>Ensure your main entry file is strictly named lowercase <code>index.html</code> located in the repository root directory.</li>
+                <li>Verify that asset paths (e.g., <code>assets/css/style.css</code>) use relative URLs rather than absolute root paths (<code>/assets/...</code>).</li>
+                </ul>
+            </div>
+
+            <!-- Section 8 Quick Reference Table -->
+            <h2>Section 8 Quick Reference</h2>
+            <table class="cmd-table">
+                <thead>
+                <tr>
+                    <th>Setting / File</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><code>index.html</code></td>
+                    <td>Default landing page root required for GitHub Pages web hosting.</td>
+                </tr>
+                <tr>
+                    <td><code>Deploy from a branch</code></td>
+                    <td>Standard GitHub Pages build engine setting taking files directly from a specified branch.</td>
+                </tr>
+                <tr>
+                    <td><code>CNAME</code></td>
+                    <td>Root repository file used to store and configure custom domain aliases.</td>
+                </tr>
+                <tr>
+                    <td><code>Enforce HTTPS</code></td>
+                    <td>Settings toggle providing free automatic SSL encryption for hosted pages.</td>
+                </tr>
+                </tbody>
+            </table>
+            </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
